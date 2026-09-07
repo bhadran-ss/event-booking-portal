@@ -2,8 +2,16 @@ import cors from "cors";
 import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
+import mongoose from "mongoose";
 
 const app = express();
+
+const databaseStates = {
+  0: "disconnected",
+  1: "connected",
+  2: "connecting",
+  3: "disconnecting",
+};
 
 app.disable("x-powered-by");
 app.use(helmet());
@@ -24,7 +32,10 @@ app.get("/api/health", (req, res) => {
   res.status(200).json({
     success: true,
     message: "EventHub API is running",
-    timestamp: new Date().toISOString(),
+    data: {
+      database: databaseStates[mongoose.connection.readyState] || "unknown",
+      timeStamp: new Date().toDateString(),
+    },
   });
 });
 
