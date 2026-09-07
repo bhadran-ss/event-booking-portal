@@ -9,6 +9,7 @@ export const connectDatabase = async () => {
 
   await mongoose.connect(mongoUri, {
     serverSelectionTimeoutMS: 10000,
+    family: 4,
   });
   console.log(`MongoDB Connected : ${mongoose.connection.host}`);
 };
