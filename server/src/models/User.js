@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import { hashPassword, verifyPassword } from "../utils/password.js";
-import { USER_ROLES, USER_ROLE_VALUES } from "../constants/roles";
-
+import { USER_ROLES, USER_ROLE_VALUES } from "../constants/roles.js";
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -54,3 +53,5 @@ userSchema.methods.comparePassword = function comparePassword(
 ) {
   return verifyPassword(candidatePassword, this.password);
 };
+
+export const User = mongoose.model("User", userSchema);

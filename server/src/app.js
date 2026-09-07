@@ -4,6 +4,8 @@ import helmet from "helmet";
 import morgan from "morgan";
 import mongoose from "mongoose";
 
+import { authRouter } from "./routes/auth.routes.js";
+
 const app = express();
 
 const databaseStates = {
@@ -38,6 +40,8 @@ app.get("/api/health", (req, res) => {
     },
   });
 });
+
+app.use("/api/auth", authRouter);
 
 app.use((request, response) => {
   response.status(404).json({
