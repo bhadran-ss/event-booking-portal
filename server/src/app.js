@@ -1,0 +1,38 @@
+import cors from "cors";
+import express from "express";
+import helmet from "helmet";
+import morgan from "morgan";
+
+const app = express();
+
+app.disable("x-powered-by");
+app.use(helmet());
+
+app.use(
+  cors({
+    origin: process.env.CLIENT_ORIGIN || "http://localhost:5173",
+  }),
+);
+
+app.use(express.json({ limit: "20kb" }));
+
+if (process.env.NODE_ENV !== "test") {
+  app.use(morgan("dev"));
+}
+
+app.get("/api/health", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "EventHub API is running",
+    timestamp: new Date().toISOString(),
+  });
+});
+
+app.use((request, response) => {
+  response.status(404).json({
+    success: false,
+    message: `Route not found: ${request.method} ${request.originalUrl}`,
+  });
+});
+
+export default app;
