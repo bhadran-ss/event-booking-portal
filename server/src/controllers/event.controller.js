@@ -94,7 +94,6 @@ export const getEvents = async (req, res) => {
 
 export const getEventById = async (req, res) => {
   try {
-    console.log("id", req.params.id);
     const event = await Event.findById(req.params.id).populate(
       "organizer",
       "name",

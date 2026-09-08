@@ -9,19 +9,19 @@ import { AuthProvider } from "./context/AuthContext";
 import "./styles.css";
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <BrowserRouter>
-      <AuthProvider>
-        <App />
+  // <StrictMode>
+  <BrowserRouter>
+    <AuthProvider>
+      <App />
 
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          closeOnClick
-          pauseOnHover
-          theme="colored"
-        />
-      </AuthProvider>
-    </BrowserRouter>
-  </StrictMode>,
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        closeOnClick
+        pauseOnHover
+        theme="colored"
+      />
+    </AuthProvider>
+  </BrowserRouter>,
+  // </StrictMode>,
 );
