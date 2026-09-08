@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 
 import { authRouter } from "./routes/auth.routes.js";
 import { eventRouter } from "./routes/event.routes.js";
+import { bookingRouter } from "./routes/booking.routes.js";
 
 const app = express();
 
@@ -44,6 +45,7 @@ app.get("/api/health", (req, res) => {
 
 app.use("/api/auth", authRouter);
 app.use("/api/events", eventRouter);
+app.use("/api/bookings", bookingRouter);
 
 app.use((request, response) => {
   response.status(404).json({

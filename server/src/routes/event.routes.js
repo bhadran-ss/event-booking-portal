@@ -18,6 +18,10 @@ import {
   listEventsValidator,
 } from "../validators/event.validators.js";
 
+import { bookEvent } from "../controllers/booking.controller.js";
+
+import { bookEventValidator } from "../validators/booking.validators.js";
+
 const router = Router();
 
 router.get("/", listEventsValidator, validateRequest, getEvents);
@@ -31,6 +35,14 @@ router.post(
   createEvent,
 );
 
+router.post(
+  "/:id/book",
+  authenticate,
+  authorize(USER_ROLES.CUSTOMER),
+  bookEventValidator,
+  validateRequest,
+  bookEvent,
+);
 router.get("/:id", eventIdValidator, validateRequest, getEventById);
 
 export { router as eventRouter };

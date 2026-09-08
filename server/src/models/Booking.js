@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
-import { BOOKING_STATUSES, BOOKING_STATUS_VALUES } from "../constants/events";
+import {
+  BOOKING_STATUSES,
+  BOOKING_STATUS_VALUES,
+} from "../constants/events.js";
 
 export const bookingSchema = new mongoose.Schema(
   {
