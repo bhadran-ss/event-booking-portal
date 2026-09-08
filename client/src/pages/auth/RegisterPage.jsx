@@ -49,8 +49,8 @@ export default function RegisterPage() {
       nextErrors.email = "Email is required.";
     }
 
-    if (formData.password.length < 6) {
-      nextErrors.password = "Password must contain at least 6 characters.";
+    if (formData.password.length < 8) {
+      nextErrors.password = "Password must contain at least 8 characters.";
     }
 
     if (formData.password !== formData.confirmPassword) {
