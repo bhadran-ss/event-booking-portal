@@ -7,3 +7,15 @@ export const bookEvent = async (eventId, requestedTickets) => {
 
   return response.data?.data ?? response.data;
 };
+
+export const getMyBookings = async () => {
+  const response = await http.get("/bookings/my-bookings");
+
+  const payload = response.data?.data ?? response.data;
+
+  if (Array.isArray(payload)) {
+    return payload;
+  }
+
+  return payload?.bookings ?? [];
+};
